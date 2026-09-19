@@ -25,7 +25,22 @@ ROBOTSTXT_OBEY = True
 #CONCURRENT_REQUESTS = 16
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
 DOWNLOAD_DELAY = 1
-
+RETRY_ENABLED = True
+RETRY_TIMES = 3
+AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_START_DELAY = 1
+AUTOTHROTTLE_MAX_DELAY = 10
+AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+USER_AGENT = "web-data-pipeline-learning/1.0"
+ROBOTSTXT_OBEY = True
+ITEM_PIPELINES = {
+    "crawler.pipelines.CleaningItemPipeline": 300,
+    "crawler.pipelines.ValidationItemPipeline": 400,
+    "crawler.pipelines.DuplicateFilterPipeline": 500,
+}
+EXTENSIONS = {
+    "crawler.extensions.stats_extension.StatsExtension": 500,
+}
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False
 
